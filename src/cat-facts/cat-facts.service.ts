@@ -10,7 +10,7 @@ export class CatFactsService {
   constructor(private httpService: HttpService) {}
 
   async getCatFacts(): Promise<any> {
-    const response: AxiosResponse<any> = await firstValueFrom(this.httpService.get(this.apiUrl));
+    const response: AxiosResponse<any> = await firstValueFrom(this.httpService.get(this.apiUrl + '/random'));
     return response.data;
   }
 }
