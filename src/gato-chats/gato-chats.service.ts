@@ -129,4 +129,11 @@ export class GatoChatsService {
           );
     }
   }
+
+  public async getChatHistory(user: any): Promise<any> {
+    const chatHistory = (await this.chatRepository.find({ where: { user_id: user.id }}))
+        .sort((a, b) => a.order - b.order);
+    
+    return chatHistory;
+  }
 }

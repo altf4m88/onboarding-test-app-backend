@@ -8,7 +8,7 @@ export class GatoChatsInterceptor implements NestInterceptor {
     return next.handle().pipe(
       map(data => {
         return {
-            role : 'bot',
+            role : 'model',
             message: data.candidates[0].content.parts[0].text,
         };
       }),
