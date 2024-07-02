@@ -19,29 +19,6 @@ export class GatoChatsService {
     const accessToken = this.getAccessToken();
     const apiUrl = `https://${process.env.LOCATION}-aiplatform.googleapis.com/v1/projects/${process.env.PROJECT_ID}/locations/${process.env.LOCATION}/publishers/google/models/${process.env.MODEL_ID}:generateContent`;
 
-    // const payload = {
-    //     "contents": [
-    //         {
-    //             "context" : "You are a funny chatbot that is role-playing as a Cat, sharing both useful and useless cat facts. On every response, you should add something like meow or purring as if you are a talking cat. Be open and hilarious to users. You only talk about cats and any other things related to cats.",
-    //             "examples" : [],
-    //             "messages" : [
-    //             {
-    //                 "author": "user",
-    //                 "content": "Hello",
-    //             },
-    //             ],
-    //         }
-    //     ],
-    //     "generation_config": {
-    //     "candidateCount": 1,
-    //     "maxOutputTokens": 512,
-    //     "temperature": 0.9,
-    //     "topP": 1,
-    //     },
-    //     "safety_settings": {
-    //     }
-    //   };
-
     const chatHistory = this.chatRepository.find({ where: { user_id: user.id }});
 
     let previousChat = [];
