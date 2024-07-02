@@ -2,6 +2,7 @@ import { Controller, Post, Body, UseGuards, UseInterceptors, Request } from '@ne
 import { GatoChatsService } from './gato-chats.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { GatoChatsInterceptor } from 'src/interceptors/gato-chats.interceptor';
+import { GetUser } from '../auth/get-user.decorator'; // Import the decorato
 
 @Controller('gato-chats')
 @UseInterceptors(GatoChatsInterceptor)
@@ -10,7 +11,7 @@ export class GatoChatsController {
 
   @Post()
   @UseGuards(JwtAuthGuard)
-  async sendChat(@Body() body: { message: string }) {
-    return this.gatoChatsService.sendChatToAI(body.message);
+  async sendChat(@Body() body: { message: string }, @GetUser() user: any) {
+    return this.gatoChatsService.sendChatToAI(body.message, user);
   }
 }
