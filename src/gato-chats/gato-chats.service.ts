@@ -70,6 +70,7 @@ export class GatoChatsService {
           responseMimeType: 'text/plain'
         }
       };
+      
     try {
       const response = await axios.post(apiUrl, payload, {
         headers: {
@@ -77,6 +78,7 @@ export class GatoChatsService {
           'Content-Type': 'application/json',
         },
       });
+
       return response.data;
     } catch (error) {
         throw new HttpException(

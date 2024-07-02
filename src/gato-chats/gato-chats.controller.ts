@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, UseInterceptors, Request } from '@nestjs/common';
 import { GatoChatsService } from './gato-chats.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { GatoChatsInterceptor } from 'src/interceptors/gato-chats.interceptor';
@@ -10,7 +10,7 @@ export class GatoChatsController {
 
   @Post()
   @UseGuards(JwtAuthGuard)
-  async sendChat(@Body('chat') chat: string) {
-    return this.gatoChatsService.sendChatToAI(chat);
+  async sendChat(@Body() body: { message: string }) {
+    return this.gatoChatsService.sendChatToAI(body.message);
   }
 }
